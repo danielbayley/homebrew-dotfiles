@@ -3,7 +3,7 @@
 ## [CaskroomStore](https://caskroomstore.org)
 ## [mas-cli](https://github.com/argon/mas)
 
-#cask_args appdir: '/Applications'
+#cask_args appdir: '/Applications' #, args: { appdir: '~/Applications'}
 #unless File.directory?(ENV['HOME'] + '/?')
 
 #tap 'homebrew/bundle'
@@ -12,7 +12,7 @@ brew 'cask' #brew 'caskroom/cask/brew-cask'
 #tap 'caskroom/cask'
 #tap 'caskroom/versions'
 brew 'mas'
-tap 'danielbayley/homebrewery'
+tap 'danielbayley/homebrew-ery'
 
 #-------------------------------------------------------------------------------
 
@@ -38,12 +38,14 @@ cask 'usb-overdrive'
 #-------------------------------------------------------------------------------
 
 cask 'hazel'
-#tap 'homebrew/services'
+tap 'homebrew/services'
 brew 'osxutils' #trash
 brew 'hardlink-osx'
 brew 'coreutils'
 brew 'moreutils'
-#tap 'brandt/symlinks' #https://github.com/brandt/symlinks.git
+brew 'aliaspath'
+brew 'symlinks'
+#brew 'stow'
 brew 'unar'
 
 #cask 'secrets'
@@ -64,7 +66,7 @@ cask 'pacifist'
 cask 'imazing'
 
 cask 'transmission'
-brew 'transmission'
+brew 'transmission', restart_service: :changed
 cask 'bittorrent-sync'
 #cask 'jdownloader'
 #cask 'dropbox'
@@ -93,6 +95,7 @@ cask 'bartender'
 cask 'liteicon'
 #cask 'flavours'
 #cask 'candybar'
+cask 'icon-tester'
 cask 'qdesktop'
 
 brew 'tag'
@@ -102,10 +105,9 @@ brew 'dockutil'
 
 cask 'cheatsheet'
 #cask 'functionflip'
-#mas 'Copied', id: 1026349850
+#mas 'Copied', id: 1026349850 #cask 'pastebot' TODO
 cask 'quadrosync'
 mas 'GIPHY CAPTURE', id: 668208984
-#mas 'svgsus', id: 1106867065
 #cask 'pashua'
 
 ## QuickLook
@@ -120,6 +122,10 @@ cask 'brushviewql'
 
 #-------------------------------------------------------------------------------
 
+## Email
+cask 'nylas-n1' #cask 'polymail' FIXME #mas 'Airmail 3', id: 918858936
+
+## Workflow
 cask 'things'
 mas 'Evernote', id: 406056744 #cask 'evernote'
 #mas 'Alternote', id: 974971992
@@ -130,9 +136,11 @@ brew 'wakatime-cli'
 mas 'Calcbot', id: 931657367 #cask 'numi'
 mas 'Numbers', id: 409203825
 
-## Social
+## News
 mas 'ReadKit', id: 588726889 #mas 'Reeder 3', id: 880001334
 mas 'Pocket', id: 568494494
+
+## Social
 mas 'Tweetbot', id: 557168941
 cask 'franz'
 #mas 'Slack', id: 803453959 #cask 'slack'
@@ -145,9 +153,6 @@ cask 'franz'
 #mas 'meditor', id: 1065718148
 #cask 'ghost'
 #cask 'microsoft-office'
-
-## Email
-cask 'nylas-n1' #cask 'polymail' FIXME #mas 'Airmail 3', id: 918858936
 
 #-------------------------------------------------------------------------------
 
@@ -185,7 +190,7 @@ cask 'scenery'
 ### Typography
 cask 'rightfont'
 #cask 'fontstand'
-#tap 'ppicazo/sfnt2woff' #https://github.com/ppicazo/sfnt2woff.git
+cask 'woff2sfnt-sfnt2woff' #sfnt2woff TODO
 #tap 'font-octicons'
 #brew 'fontforge'
 #tap 'caskroom/fonts' # TODO # NOTE hardlinks into ~/Library/Fonts
@@ -196,14 +201,17 @@ cask 'rightfont'
 #cask 'font-droid-sans-mono'
 
 brew 'graphicsmagick'
+brew 'svg2png'
+#mas 'svgsus', id: 1106867065
 brew 'png2ico'
+#cask 'icons'
 brew 'pngcrush'
 #brew 'libicns'
 #brew 'gifsicle'
 #cask 'xscope'
 
 ## Development
-brew 'git' # until git-lfs is native on OS X
+brew 'git' # TODO until git-lfs is native on macOS
 #brew 'gitsh'
 brew 'hub'
 brew 'git-lfs'
@@ -228,6 +236,11 @@ mas 'SnippetsLab', id: 1006087419 #mas 'Quiver', id: 866773894
 mas 'Dash', id: 449589707
 #cask 'avocode'
 
+## mac/iOS
+#brew 'swift'
+brew 'cocoapods'
+#brew 'swiftgen'
+
 ## Web
 brew 'hugo'
 brew 'sassc'
@@ -235,10 +248,12 @@ brew 'discount'
 #brew 'watch'
 
 brew 'nginx'
-brew 'dnsmasq'
+#tap 'homebrew/apache' TODO
+#brew 'mod_?'
+brew 'dnsmasq', restart_service: :changed
 brew 'namebench' #cask
 brew 'wget'
-#tap 'newzealandpaul/webarchiver' #https://github.com/newzealandpaul/webarchiver.git
+brew 'webarchiver'
 
 cask 'google-chrome'
 cask 'firefox'
@@ -298,7 +313,7 @@ cask 'airserver'
 ## Entertainment
 cask 'webtorrent'
 #tap 'asio/popcorn-time' #casidiablo/custom
-#cask 'popcorn-time' FIXME
+cask 'popcorn-time'
 
 ### Gaming
 cask 'battle-net'
