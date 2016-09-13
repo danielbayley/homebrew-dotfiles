@@ -3,7 +3,7 @@ _[Homebrew]_**ery**
 Personal [Homebrew] setup.
 * [Formulae]
 * [_Cask_]s
-* _[Brewfile]_ including [mas]<sup>*</sup> apps
+* _[Brewfile]_ including _[mas]_<sup>*</sup> apps
 
 \* [Mac App Store]
 
