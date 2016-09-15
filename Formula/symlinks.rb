@@ -7,6 +7,7 @@ class Symlinks < Formula
   def install
     system "make", "install"
     bin.install "symlinks"
+    man8.install "symlinks.8"
   end
 
   test do
