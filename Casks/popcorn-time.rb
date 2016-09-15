@@ -7,7 +7,7 @@ cask 'popcorn-time' do
   homepage 'https://popcorntime.sh'
   license :gpl
 
-  app 'Popcorn-Time.app'
+  app 'Popcorn-Time.app', target: 'Popcorn Time.app'
 
   uninstall rmdir: '~/Library/Application Support/Popcorn-Time'
   zap delete: [
