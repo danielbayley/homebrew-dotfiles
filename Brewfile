@@ -17,6 +17,7 @@ tap 'danielbayley/homebrew-ery'
 #-------------------------------------------------------------------------------
 
 ## System
+mas 'macOS Sierra', id: 1127487414
 brew 'ansible'
 #tap 'thoughtbot/formulae'
 #brew 'rcm'
@@ -25,13 +26,15 @@ mas 'veertu', id: 1024069033 #'veertu 2016 business', id: 1082458124
 cask 'vagrant'
 brew 'packer'
 #cask 'vmware-fusion'
+#brew 'bash'
 ### zsh
 brew 'zplug'
 #brew 'zsh-syntax-highlighting'
 brew 'shellcheck'
 brew 'cmake'
+brew 'pick'
 
-cask 'hyperterm' #black-screen
+cask 'hyper' #black-screen
 
 cask 'usb-overdrive'
 
@@ -40,11 +43,12 @@ cask 'usb-overdrive'
 cask 'hazel'
 tap 'homebrew/services'
 brew 'osxutils' #trash
-brew 'hardlink-osx'
+brew 'hardlink-osx' #hardlink
 brew 'coreutils'
 brew 'moreutils'
 brew 'aliaspath'
 brew 'symlinks'
+cask 'symboliclinker'
 #brew 'stow'
 brew 'unar'
 
@@ -53,7 +57,7 @@ brew 'unar'
 #cask 'magic-launch'
 #cask 'rcdefaultapp'
 
-cask 'xtrafinder' #mas 'forklift', id: 412448059 #cask 'commander-one'
+#cask 'xtrafinder' #mas 'forklift', id: 412448059 #cask 'commander-one'
 #cask 'asepsis' # http://pixelcog.com/blog/2016/disable-ds_store-in-el-capitan
 cask 'clusters'
 mas 'DaisyDisk', id: 411643860 #cask 'daisydisk'
@@ -66,8 +70,8 @@ cask 'pacifist'
 cask 'imazing'
 
 cask 'transmission'
-brew 'transmission', restart_service: :changed
-cask 'bittorrent-sync'
+#brew 'transmission', restart_service: :changed FIXME crashes hard!
+cask 'resilio-sync'
 #cask 'jdownloader'
 #cask 'dropbox'
 mas 'CloudApp', id: 417602904 #cask 'cloud' #cask 'cloudup'
@@ -75,6 +79,7 @@ mas 'CloudApp', id: 417602904 #cask 'cloud' #cask 'cloudup'
 
 ## Security
 mas '1Password', id: 443987910 #cask #mas 'wallet', id: 404234608
+brew 'onepass'
 #cask 'encryptr'
 brew 'gpg'
 #cask 'keeweb'
@@ -91,7 +96,7 @@ brew 'tccutil'
 ## UI/X
 #cask 'lumen'
 cask 'bartender'
-#cask 'alfred' #mas 'Alfred', id: 405843582 #cask 'launchbar'
+cask 'alfred' #mas 'Alfred', id: 405843582 #cask 'launchbar'
 cask 'liteicon'
 #cask 'flavours'
 #cask 'candybar'
@@ -100,6 +105,7 @@ cask 'qdesktop'
 
 brew 'tag'
 #mas 'PushPal - for PushBullet', id: 909832412 #mas 'Pushbullet', id: 948415170
+#cask 'notifyr'
 brew 'terminal-notifier'
 brew 'dockutil'
 
@@ -107,13 +113,15 @@ cask 'cheatsheet'
 #cask 'functionflip'
 #mas 'Copied', id: 1026349850 #cask 'pastebot' TODO
 cask 'quadrosync'
-mas 'GIPHY CAPTURE', id: 668208984
+mas 'Gifox', id: 1082624744 #cask 'kap' #mas 'GIPHY CAPTURE', id: 668208984
+brew 'gifsicle'
 #cask 'pashua'
 
 ## QuickLook
 cask 'qlcolorcode'
 cask 'qlstephen'
 cask 'qlmarkdown'
+cask 'qlswift'
 cask 'scriptql'
 #cask 'quicklook-csv'
 #cask 'quicklook-json'
@@ -126,7 +134,7 @@ cask 'brushviewql'
 cask 'nylas-n1' #cask 'polymail' FIXME #mas 'Airmail 3', id: 918858936
 
 ## Workflow
-cask 'things'
+cask 'things' #mas 'Things', id: 407951449
 mas 'Evernote', id: 406056744 #cask 'evernote'
 #mas 'Alternote', id: 974971992
 brew 'wakatime-cli'
@@ -148,6 +156,7 @@ cask 'franz'
 #cask 'chitchat'
 #cask 'skype' #discord
 
+#mas 'Ulysses', id: 623795237
 #cask 'mou' #typora #whiskey
 #mas 'Deckset', id: 847496013
 #mas 'meditor', id: 1065718148
@@ -159,12 +168,12 @@ cask 'franz'
 ## Design
 cask 'adobe-creative-cloud'
 cask 'adobe-creative-cloud-cleaner-tool'
-#cask 'adobe-illustrator-cc'#-gb
-#cask 'adobe-photoshop-cc'#-gb
-#cask 'adobe-indesign-cc'#-gb
-#cask 'adobe-after-effects-cc' TODO -gb
-#cask 'adobe-media-encoder-cc' TODO -gb
-#cask 'adobe-premiere-pro-cc' TODO -gb
+#cask 'adobe-illustrator-cc'
+#cask 'adobe-photoshop-cc'
+#cask 'adobe-indesign-cc'
+#cask 'adobe-after-effects-cc'
+#cask 'adobe-media-encoder-cc'
+#cask 'adobe-premiere-pro-cc'
 
 #cask 'lingo'
 #cask 'noun-project'
@@ -175,6 +184,7 @@ mas 'Sip', id: 507257563
 #cask 'sketch-toolbox'
 #cask 'sketch-tool' #App*s/Sketch.app/*/*/sketchtool/install.sh
 
+cask 'folio'
 cask 'zeplin'
 cask 'framer'
 #cask 'invisionsync' #craft TODO?
@@ -211,7 +221,7 @@ brew 'pngcrush'
 #cask 'xscope'
 
 ## Development
-brew 'git' # TODO until git-lfs is native on macOS
+#brew 'git'
 #brew 'gitsh'
 brew 'hub'
 brew 'git-lfs'
@@ -264,6 +274,7 @@ cask 'java'
 
 brew 'node'
 #brew 'npm'
+#brew 'brew-gem'
 brew 'jq'
 brew 'tidy-html5'
 brew 'pandoc'

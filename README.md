@@ -10,7 +10,7 @@ Personal [Homebrew] setup.
 Install
 -------
 ~~~ sh
-brew tap danielbayley/homebrewery
+brew tap danielbayley/homebrew-ery
 brew install #formula
 brew cask install #cask
 ~~~
