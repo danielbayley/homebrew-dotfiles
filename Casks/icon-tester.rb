@@ -6,7 +6,6 @@ cask 'icon-tester' do
   url 'http://kennyadr.com/archives/icontester.zip'
   name 'Icon Tester' # https://github.com/aroben/IconTester
   homepage 'https://dribbble.com/shots/47777-Icon-Tester'
-  license :gratis
 
   app "#{name[0]}/#{name[0]}.app"
 

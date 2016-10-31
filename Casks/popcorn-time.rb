@@ -5,7 +5,6 @@ cask 'popcorn-time' do
   url "https://popcorntime.sh/download/build/Popcorn-Time-#{version}-Mac.tar.xz"
   name 'Popcorn-Time'
   homepage 'https://popcorntime.sh'
-  license :gpl
 
   app 'Popcorn-Time.app', target: 'Popcorn Time.app'
 

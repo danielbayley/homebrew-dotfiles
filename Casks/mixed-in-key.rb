@@ -5,7 +5,6 @@ cask 'mixed-in-key' do
   url ENV['MIXED_IN_KEY'].gsub 'VERSION', version
   name 'Mixed In Key'
   homepage 'http://mixedinkey.com'
-  license :commercial
 
   app "Mixed In Key #{version.major}.app"
   auto_updates true
