@@ -1,8 +1,8 @@
 cask 'popcorn-time' do
-  version '0.3.9'
-  sha256 '390c29cc9f4187cf068a0d53897528fb576d9e4076fd1fa47354086cc2d3770b'
+  version '0.3.10'
+  sha256 '7d2cd37837963df8bb3c3c8601e44142a8314ac71e943f544f9a638da1c1330f'
 
-  url "https://popcorntime.sh/download/build/Popcorn-Time-#{version}-Mac.tar.xz"
+  url "https://popcorntime.sh/download/build/Popcorn-Time-#{version}-Mac.zip"
   name 'Popcorn-Time'
   homepage 'https://popcorntime.sh'
 
