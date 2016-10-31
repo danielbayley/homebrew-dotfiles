@@ -1,6 +1,5 @@
 # [Homebrew](http://brewformulas.org)
 # [Casks](http://caskroom.io)
-## [CaskroomStore](https://caskroomstore.org)
 ## [mas-cli](https://github.com/argon/mas)
 
 #cask_args appdir: '/Applications' #, args: { appdir: '~/Applications'}
@@ -8,21 +7,24 @@
 
 #tap 'homebrew/bundle'
 #tap 'homebrew/dupes'
-brew 'cask' #brew 'caskroom/cask/brew-cask'
+#brew 'cask' #brew 'caskroom/cask/brew-cask'
 #tap 'caskroom/cask'
-#tap 'caskroom/versions'
+tap 'caskroom/versions'
 brew 'mas'
 tap 'danielbayley/homebrew-ery'
+tap 'codeclimate/formulae'
 
 #-------------------------------------------------------------------------------
 
 ## System
 mas 'macOS Sierra', id: 1127487414
+#mas 'macOS Server', id: 883878097
+mas 'Apple Configurator 2', id: 1037126344
 brew 'ansible'
 #tap 'thoughtbot/formulae'
 #brew 'rcm'
 cask 'docker'
-mas 'veertu', id: 1024069033 #'veertu 2016 business', id: 1082458124
+cask 'veertu-desktop' #mas 'veertu', id: 1024069033 #'veertu 2016 business', id: 1082458124
 cask 'vagrant'
 brew 'packer'
 #cask 'vmware-fusion'
@@ -57,6 +59,7 @@ brew 'unar'
 #cask 'magic-launch'
 #cask 'rcdefaultapp'
 
+#brew 'sidebarfinagler'
 #cask 'xtrafinder' #mas 'forklift', id: 412448059 #cask 'commander-one'
 #cask 'asepsis' # http://pixelcog.com/blog/2016/disable-ds_store-in-el-capitan
 cask 'clusters'
@@ -84,19 +87,20 @@ brew 'onepass'
 brew 'gpg'
 #cask 'keeweb'
 #brew 'keybase'
-cask 'keytouch'
 brew 'tccutil'
 #cask 'management-tools'
 #cask 'privacy-services-manager'
 #brew 'pass'
-#brew 'tor'
+#mas 'Better', id: 1121192229
+#brew 'torbrowser'
 
 #-------------------------------------------------------------------------------
 
 ## UI/X
 #cask 'lumen'
-cask 'bartender'
 cask 'alfred' #mas 'Alfred', id: 405843582 #cask 'launchbar'
+#cask 'bartender'
+#mas 'Battery Indicator', id: 0
 cask 'liteicon'
 #cask 'flavours'
 #cask 'candybar'
@@ -111,7 +115,7 @@ brew 'dockutil'
 
 cask 'cheatsheet'
 #cask 'functionflip'
-#mas 'Copied', id: 1026349850 #cask 'pastebot' TODO
+'Pastebot', id: 1179623856 #mas #'Copied', id: 1026349850
 cask 'quadrosync'
 mas 'Gifox', id: 1082624744 #cask 'kap' #mas 'GIPHY CAPTURE', id: 668208984
 brew 'gifsicle'
@@ -131,7 +135,7 @@ cask 'brushviewql'
 #-------------------------------------------------------------------------------
 
 ## Email
-cask 'nylas-n1' #cask 'polymail' FIXME #mas 'Airmail 3', id: 918858936
+cask 'nylas-mail' #cask 'polymail' FIXME #mas 'Airmail 3', id: 918858936
 
 ## Workflow
 cask 'things' #mas 'Things', id: 407951449
@@ -140,13 +144,16 @@ mas 'Evernote', id: 406056744 #cask 'evernote'
 brew 'wakatime-cli'
 #mas 'Billings Pro', id: 434514810
 #cask 'money'
+#cask 'bitpay'
 #mas 'Timing', id: 431511738 #cask 'timing'
 mas 'Calcbot', id: 931657367 #cask 'numi'
 mas 'Numbers', id: 409203825
 
-## News
+## Reading
 mas 'ReadKit', id: 588726889 #mas 'Reeder 3', id: 880001334
+#cask 'winds'
 mas 'Pocket', id: 568494494
+cask 'raindropio'
 
 ## Social
 mas 'Tweetbot', id: 557168941
@@ -156,9 +163,11 @@ cask 'franz'
 #cask 'chitchat'
 #cask 'skype' #discord
 
+#cask 'nteract'
 #mas 'Ulysses', id: 623795237
-#cask 'mou' #typora #whiskey
+#cask 'mou' #typora #whiskey #mas 'Bear', id: 1091189122
 #mas 'Deckset', id: 847496013
+#brew 'poppler'
 #mas 'meditor', id: 1065718148
 #cask 'ghost'
 #cask 'microsoft-office'
@@ -172,17 +181,17 @@ cask 'adobe-creative-cloud-cleaner-tool'
 #cask 'adobe-photoshop-cc'
 #cask 'adobe-indesign-cc'
 #cask 'adobe-after-effects-cc'
+#cask 'cuda'
 #cask 'adobe-media-encoder-cc'
 #cask 'adobe-premiere-pro-cc'
 
 #cask 'lingo'
 #cask 'noun-project'
-#cask 'pixelapse'
 mas 'Sip', id: 507257563
 
 #cask 'sketch' #vectr
+#App*s/Sketch.app/*/*/sketchtool/install.sh
 #cask 'sketch-toolbox'
-#cask 'sketch-tool' #App*s/Sketch.app/*/*/sketchtool/install.sh
 
 cask 'folio'
 cask 'zeplin'
@@ -232,9 +241,12 @@ cask 'gitkraken' #github-desktop
 #cask 'tower'
 #cask 'deckhub'
 brew 'gist'
+#brew 'autoenv' #direnv
+brew 'codeclimate'
 
 ## IDE
-cask 'atom'
+cask 'atom' #atom-beta
+cask 'sublime-text'
 cask 'coda'
 brew 'coda-cli'
 mas 'Xcode', id: 497799835
@@ -243,7 +255,7 @@ cask 'alcatraz'
 #cask 'cactus'
 #cask 'mixture'
 mas 'SnippetsLab', id: 1006087419 #mas 'Quiver', id: 866773894
-mas 'Dash', id: 449589707
+cask 'dash'
 #cask 'avocode'
 
 ## mac/iOS
@@ -268,12 +280,13 @@ brew 'webarchiver'
 cask 'google-chrome'
 cask 'firefox'
 #cask 'brave'
-cask 'flash'
+cask 'flash-player'
 cask 'silverlight'
 cask 'java'
 
 brew 'node'
 #brew 'npm'
+#brew 'coffeescript'
 #brew 'brew-gem'
 brew 'jq'
 brew 'tidy-html5'
@@ -288,7 +301,6 @@ brew 'csv-fix'
 #-------------------------------------------------------------------------------
 
 ## Audio
-tap 'caskroom/versions'
 cask 'ableton-live-suite'
 cask 'mixed-in-key'
 cask 'cycling74-max'
@@ -310,6 +322,8 @@ brew 'exiftool'
 #cask 'beatport-pro'
 #cask 'soundflower'
 #cask 'faw-circle'
+#cask 'circle-wavetable-generator'
+#mas 'Audulus 3', id: 1031667826
 
 ## Video
 cask 'beardedspice'
@@ -330,7 +344,15 @@ cask 'popcorn-time'
 cask 'battle-net'
 #mas 'Worms Revolution', id: 616018342
 #cask 'lego-digital-designer'
+#mas 'Bike Baron', id: 539235808
 #cask 'unity-web-player'
+#### Theme Hospital
+#brew 'lua'
+#exec 'luarocks install lpeg' #luafilesystem
+#tap 'games'
+#brew 'corsixth'
+#linkapps 'corsixth' #exec 'brew linkapps corsixth'
+#cask 'danielbayley/theme-hospital' TODO?
 
 #-------------------------------------------------------------------------------
 
