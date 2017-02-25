@@ -207,7 +207,6 @@ cask 'scenery'
 ### Typography
 cask 'rightfont'
 #cask 'fontstand'
-cask 'woff2sfnt-sfnt2woff' #sfnt2woff TODO
 #tap 'font-octicons'
 #brew 'fontforge'
 #tap 'caskroom/fonts' # TODO # NOTE hardlinks into ~/Library/Fonts
