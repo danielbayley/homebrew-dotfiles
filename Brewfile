@@ -48,7 +48,6 @@ brew 'osxutils' #trash
 brew 'hardlink-osx' #hardlink
 brew 'coreutils'
 brew 'moreutils'
-brew 'aliaspath'
 brew 'symlinks'
 cask 'symboliclinker'
 #brew 'stow'
