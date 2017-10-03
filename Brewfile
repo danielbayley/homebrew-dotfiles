@@ -1,6 +1,8 @@
 # [Homebrew](http://brewformulas.org)
 # [Casks](http://caskroom.io)
-## [mas-cli](https://github.com/argon/mas)
+# [mas](https://github.com/argon/mas)
+# [Product Hunt](https://producthunt.com)
+# [Electron](https://electron.atom.io/apps)
 
 #cask_args appdir: '/Applications' #, args: { appdir: '~/Applications'}
 #unless File.directory?(ENV['HOME'] + '/?')
@@ -11,30 +13,60 @@
 #tap 'caskroom/cask'
 tap 'caskroom/versions'
 brew 'mas'
-tap 'danielbayley/homebrew-ery'
+tap 'homebrew/services'
+
+# TODO https://github.com/caskroom/homebrew-cask/issues/29301
+tap 'buo/cask-upgrade' # https://github.com/buo/homebrew-cask-upgrade
+
+tap 'danielbayley/ery' #homebrew-ery
 tap 'codeclimate/formulae'
+#tap 'max-os/services' TODO macOS-Xtra/
+#tap 'max-os/formulae'
 
 #-------------------------------------------------------------------------------
 
-## System
+# System
 mas 'macOS Sierra', id: 1127487414
 #mas 'macOS Server', id: 883878097
 mas 'Apple Configurator 2', id: 1037126344
 brew 'ansible'
 #tap 'thoughtbot/formulae'
 #brew 'rcm'
-cask 'docker'
+
+# VM/CI
+#cask 'vagrant'
+#brew 'packer'
+cask 'docker' #brew
+#brew 'docker-machine'
+#brew 'docker-compose'
+cask 'anka-run'
 cask 'veertu-desktop' #mas 'veertu', id: 1024069033 #'veertu 2016 business', id: 1082458124
-cask 'vagrant'
-brew 'packer'
-#cask 'vmware-fusion'
+#brew 'qemu' #vdlaunch
+
+# Backup
+cask 'backblaze' #–downloader
+#brew 'b2-tools'
+#cask 'duplicati' #brew 'duplicity'
+#cask 'transmit' #-disk #mas 'Transmit', id: 403388562
+#cask 'megasync'
+#brew 'megatools' #megacmd
+#cask 'osxfuse' #expandrive #arq #cloudmounter
+#cask 'mountain-duck'
+#brew 'duck'
+
 #brew 'bash'
-### zsh
 brew 'zplug'
+#tap 'molovo/revolver'
+#tap 'zunit-zsh/zunit'#/zunit
+#brew 'zunit'
 #brew 'zsh-syntax-highlighting'
 brew 'shellcheck'
-brew 'cmake'
+brew 'duti'
 brew 'pick'
+brew 'cmake'
+#brew 'entr'
+#cask 'xquartz'
+brew 'archey'
 
 cask 'hyper' #black-screen
 
@@ -46,13 +78,19 @@ cask 'hazel'
 tap 'homebrew/services'
 brew 'osxutils' #trash
 brew 'hardlink-osx' #hardlink
-brew 'coreutils'
+brew 'coreutils' #--with-default-names
+brew 'gnu-sed'
+#brew 'grep' # gnu
+#brew 'gawk'
+#brew 'findutils'
 brew 'moreutils'
 cask 'symboliclinker'
 #brew 'stow'
 brew 'unar'
 
 #cask 'secrets'
+#cask 'controlplane'
+#brew 'xdotool'
 #cask 'preferencecleaner'
 #cask 'magic-launch'
 #cask 'rcdefaultapp'
@@ -61,24 +99,26 @@ brew 'unar'
 #cask 'xtrafinder' #mas 'forklift', id: 412448059 #cask 'commander-one'
 #cask 'asepsis' # http://pixelcog.com/blog/2016/disable-ds_store-in-el-capitan
 cask 'clusters'
-mas 'DaisyDisk', id: 411643860 #cask 'daisydisk'
+cask 'daisydisk' #mas 'DaisyDisk', id: 411643860
 #cask 'gemini' #mas 'Duplicate Detective', id: 686428787
-#cask 'renamer' FIXME
+#brew 'rename'
+#cask 'renamer'
 mas 'Mactracker', id: 430255202 #cask 'mactracker'
 cask 'pacifist'
 #cask 'cleanmymac' #mas 'CleanMyDrive 2', id: 523620159
 #cask 'endurance'
-cask 'imazing'
+cask 'imazing' #waltr
 
 cask 'transmission'
-#brew 'transmission', restart_service: :changed FIXME crashes hard!
+brew 'transmission', restart_service: :changed # FIXME crashes hard!
+#cask 'leech' #folx
 cask 'resilio-sync'
 #cask 'jdownloader'
 #cask 'dropbox'
-mas 'CloudApp', id: 417602904 #cask 'cloud' #cask 'cloudup'
-#cask 'minbox'
+cask 'droplr' #mas 'Droplr', id: 498672703
+mas 'CloudApp', id: 417602904 #cask 'cloudapp' #minbox #dropshare #cloudup
 
-## Security
+# Security
 mas '1Password', id: 443987910 #cask #mas 'wallet', id: 404234608
 brew 'onepass'
 #cask 'encryptr'
@@ -92,17 +132,23 @@ brew 'tccutil'
 #mas 'Better', id: 1121192229
 #brew 'torbrowser'
 
+#
+#tap 'golemfactory/golem'
+#cask 'golem'
+
 #-------------------------------------------------------------------------------
 
-## UI/X
+# UI/X
 #cask 'lumen'
 cask 'alfred' #mas 'Alfred', id: 405843582 #cask 'launchbar'
 #cask 'bartender'
+cask 'spectacle'
 #mas 'Battery Indicator', id: 0
 cask 'liteicon'
 #cask 'flavours'
 #cask 'candybar'
 cask 'icon-tester'
+#cask 'uielementinspector'
 cask 'qdesktop'
 
 brew 'tag'
@@ -110,16 +156,19 @@ brew 'tag'
 #cask 'notifyr'
 brew 'terminal-notifier'
 brew 'dockutil'
+#cask 'cdock'
 
 cask 'cheatsheet'
 #cask 'functionflip'
-'Pastebot', id: 1179623856 #mas #'Copied', id: 1026349850
+mas 'Pastebot', id: 1179623856 #'Copied', id: 1026349850 #'Paste', id: 967805235 # https://ohsloth.com
 cask 'quadrosync'
 mas 'Gifox', id: 1082624744 #cask 'kap' #mas 'GIPHY CAPTURE', id: 668208984
 brew 'gifsicle'
 #cask 'pashua'
 
-## QuickLook
+#brew 'grip'
+
+# QuickLook
 cask 'qlcolorcode'
 cask 'qlstephen'
 cask 'qlmarkdown'
@@ -132,28 +181,30 @@ cask 'brushviewql'
 
 #-------------------------------------------------------------------------------
 
-## Email
-cask 'nylas-mail' #cask 'polymail' FIXME #mas 'Airmail 3', id: 918858936
+# Email
+cask 'nylas-mail' #cask 'polymail' #mas 'Airmail 3', id: 918858936 #'Spark', id: 1176895641
 
-## Workflow
-cask 'things' #mas 'Things', id: 407951449
+# Workflow
+cask 'things' #mas 'Things', id: 407951449 #'Things 3'
+#brew 'todo-txt'
 mas 'Evernote', id: 406056744 #cask 'evernote'
 #mas 'Alternote', id: 974971992
+#cask 'airtable'
 brew 'wakatime-cli'
 #mas 'Billings Pro', id: 434514810
 #cask 'money'
 #cask 'bitpay'
-#mas 'Timing', id: 431511738 #cask 'timing'
-mas 'Calcbot', id: 931657367 #cask 'numi'
+#cask 'timing' #usage #timings
+cask 'numi' #mas 'Calcbot', id: 931657367
 mas 'Numbers', id: 409203825
 
-## Reading
+# Reading
 mas 'ReadKit', id: 588726889 #mas 'Reeder 3', id: 880001334
 #cask 'winds'
 mas 'Pocket', id: 568494494
 cask 'raindropio'
 
-## Social
+# Social
 mas 'Tweetbot', id: 557168941
 cask 'franz'
 #mas 'Slack', id: 803453959 #cask 'slack'
@@ -163,7 +214,9 @@ cask 'franz'
 
 #cask 'nteract'
 #mas 'Ulysses', id: 623795237
-#cask 'mou' #typora #whiskey #mas 'Bear', id: 1091189122
+#cask 'mou' #typora #whiskey #mas 'Bear', id: 1091189122 #cask 'caret'
+brew 'proselint'
+brew 'translate-shell'
 #mas 'Deckset', id: 847496013
 #brew 'poppler'
 #mas 'meditor', id: 1065718148
@@ -172,7 +225,7 @@ cask 'franz'
 
 #-------------------------------------------------------------------------------
 
-## Design
+# Design
 cask 'adobe-creative-cloud'
 cask 'adobe-creative-cloud-cleaner-tool'
 #cask 'adobe-illustrator-cc'
@@ -182,31 +235,29 @@ cask 'adobe-creative-cloud-cleaner-tool'
 #cask 'cuda'
 #cask 'adobe-media-encoder-cc'
 #cask 'adobe-premiere-pro-cc'
+#cask 'zxpinstaller'
+#cask 'sketch' #-toolbox #cask 'plant' TODO https://plantapp.io
+#App*s/Sketch.app/*/*/sketchtool/install.sh
+#mas 'Affinity Designer', id: 824171161 #cask 'vectr'
+#mas 'Affinity Photo', id: 824171161
 
 #cask 'lingo'
 #cask 'noun-project'
-mas 'Sip', id: 507257563
+mas 'Sip', id: 507257563 #cask 'colol' TODO http://colol.me
 
-#cask 'sketch' #vectr
-#App*s/Sketch.app/*/*/sketchtool/install.sh
-#cask 'sketch-toolbox'
-
-cask 'folio'
-cask 'zeplin'
-cask 'framer'
-#cask 'invisionsync' #craft TODO?
-#cask 'adobe-experience-design-cc' TODO?
-#cask 'origami'
-#cask 'balsamiq-mockups'
-#cask 'principle' #pixate-studio
+#cask 'folio'
+#cask 'framer' #zeplin #avocode #origami #figma #principle #balsamiq-mockups
+#invisionsync #craft
 cask 'livesurface-context'
 cask 'scenery'
 
+#cask 'collectie' TODO # https://getcollectie.com
+
 #cask 'wacom-bamboo-tablet'
 
-### Typography
-cask 'rightfont'
-#cask 'fontstand'
+# Typography
+cask 'rightfont' #fontbase #fontstand
+#mas 'Type Case', id: 994524929
 #tap 'font-octicons'
 #brew 'fontforge'
 #tap 'caskroom/fonts' # TODO # NOTE hardlinks into ~/Library/Fonts
@@ -215,6 +266,8 @@ cask 'rightfont'
 #cask 'font-hack' #caskroom/fonts/font-hack
 #cask 'font-cousine'
 #cask 'font-droid-sans-mono'
+#cask 'font-redacted'
+#cask 'font-interface'
 
 brew 'graphicsmagick'
 brew 'svg2png'
@@ -226,52 +279,66 @@ brew 'pngcrush'
 #brew 'gifsicle'
 #cask 'xscope'
 
-## Development
+# Development
+brew 'ripgrep'
+
+# Git
 #brew 'git'
-#brew 'gitsh'
-brew 'hub'
 brew 'git-lfs'
-brew 'git-extras'
+brew 'hub'
+#brew 'git-hub' # https://github.com/Homebrew/homebrew-core/pull/TODO
+#brew 'git-hooks'
+#brew 'git-flow'
+#brew 'git-subrepo'
+#brew 'git-extras'
+
+brew 'gist'
+mas 'SnippetsLab', id: 1006087419 #mas 'Quiver', id: 866773894 #cask 'lepton'
+
 #cask 'kaleidoscope'
 cask 'ksdiff'
-cask 'gitkraken' #github-desktop
-#cask 'tower'
+
+cask 'gitkraken' #tower #github-desktop #-beta
 #cask 'deckhub'
-brew 'gist'
+#cask 'gitscout'
+#cask 'hawk-eye'
+
 #brew 'autoenv' #direnv
 brew 'codeclimate'
+#brew 'bitrise'
 
-## IDE
-cask 'atom' #atom-beta
-cask 'sublime-text'
-cask 'coda'
-brew 'coda-cli'
+# IDE
+cask 'atom-beta'
+#cask 'sublime-text'
+#cask 'coda'
+#brew 'coda-cli'
+
+# mac/iOS
 mas 'Xcode', id: 497799835
 cask 'alcatraz'
-#mas 'Hammer', id: 548600167
-#cask 'cactus'
-#cask 'mixture'
-mas 'SnippetsLab', id: 1006087419 #mas 'Quiver', id: 866773894
-cask 'dash'
-#cask 'avocode'
-
-## mac/iOS
+brew 'carthage' #cocoapods'
 #brew 'swift'
-brew 'cocoapods'
+#brew 'swiftlint'
 #brew 'swiftgen'
 
-## Web
+# Documentation
+cask 'dash'
+
+# Frontend/web
+#cask 'hammer'
+#cask 'cactus'
 brew 'hugo'
 brew 'sassc'
 brew 'discount'
 #brew 'watch'
 
 brew 'nginx'
-#tap 'homebrew/apache' TODO
+#tap 'homebrew/apache'
 #brew 'mod_?'
 brew 'dnsmasq', restart_service: :changed
 brew 'namebench' #cask
 brew 'wget'
+#cask 'insomnia'
 brew 'webarchiver'
 
 cask 'google-chrome'
@@ -281,24 +348,27 @@ cask 'flash-player'
 cask 'silverlight'
 cask 'java'
 
-brew 'node'
-#brew 'npm'
+brew 'node' #npm
 #brew 'coffeescript'
 #brew 'brew-gem'
+brew 'httpie'
+brew 'pup'
 brew 'jq'
+brew 'remarshal'
+brew 'shyaml'
 brew 'tidy-html5'
 brew 'pandoc'
 brew 'smartypants'
 brew 'csv-fix'
 #brew 'xmlstarlet'
 
-## Python
+# Python
 #brew 'brew-pip' #sudo easy_install pip
 
 #-------------------------------------------------------------------------------
 
-## Audio
-cask 'ableton-live-suite'
+# Audio
+cask 'ableton-live-suite' #ableton-live-beta
 cask 'mixed-in-key'
 cask 'cycling74-max'
 cask 'stemcreator'
@@ -322,9 +392,10 @@ brew 'exiftool'
 #cask 'circle-wavetable-generator'
 #mas 'Audulus 3', id: 1031667826
 
-## Video
-cask 'beardedspice'
-brew 'minidlna'
+# Video
+brew 'youtube-dl'
+#cask 'beardedspice'
+#brew 'minidlna'
 cask 'airserver'
 #cask 'duet'
 #cask 'vlc'
@@ -332,12 +403,12 @@ cask 'airserver'
 #cask 'maddthesane-perian'
 #cask 'flip4mac'
 
-## Entertainment
-cask 'webtorrent'
+# Entertainment
+#cask 'webtorrent'
 #tap 'asio/popcorn-time' #casidiablo/custom
 cask 'popcorn-time'
 
-### Gaming
+# Gaming
 cask 'battle-net'
 #mas 'Worms Revolution', id: 616018342
 #cask 'lego-digital-designer'
