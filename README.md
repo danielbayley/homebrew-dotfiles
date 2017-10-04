@@ -14,6 +14,7 @@ brew tap danielbayley/homebrew-ery
 brew install #formula
 brew cask install #cask
 ~~~
+`git config core.hooksPath hooks`
 
 License
 -------
