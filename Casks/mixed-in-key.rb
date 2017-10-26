@@ -1,24 +1,23 @@
 cask 'mixed-in-key' do
-  version '8.0.0.3343'
-  sha256 '3861404ce7817bc54e9981194ddfc2f80a0fda784c2ce6027567e9942c3efebb'
+  version '8.1.2.3598'
+  sha256 '36d853f2811d166098648bb2847a2987d25e67a5ab5c4e0aa9c59cdda279b596'
 
-  url ENV['MIXED_IN_KEY'].gsub 'VERSION', version
+  url 'https://builds.mixedinkey.com/download/39/release/latest?key=' + ENV['MIXED_IN_KEY']
   name 'Mixed In Key'
-  homepage 'http://mixedinkey.com'
+  homepage 'http://mixedinkey.com/'
 
-  app "Mixed In Key #{version.major}.app"
   auto_updates true
 
-  uninstall rmdir: '~/Library/Application Support/Mixedinkey'
-            #trash: '~/Library/Preferences/com.mixedinkey.application.plist'
-  zap delete: [
-        '~/Library/Application Support/Mixedinkey',
-        '~/Library/Application Support/com.mixedinkey.application',
-        #~/Library/Application Support/*[Mm]ixedinkey*
-        '~/Library/Preferences/com.mixedinkey.application.plist',
-        '~/Library/Preferences/com.mixedinkey.application.plist.lockfile',
-        #~/Library/Preferences/com.mixedinkey*.plist*
-        '~/Library/Caches/com.mixedinkey.application',
-        '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mixedinkey.application.sfl'
-      ]
+  app "Mixed In Key #{version.major}.app"
+
+  uninstall delete: [
+                      '~/Library/Caches/com.mixedinkey.application',
+                      '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mixedinkey.application.sfl',
+                    ],
+            rmdir:  '~/Library/Application Support/Mixedinkey'
+
+  zap trash: [
+               '~/Library/Application Support/Mixedinkey',
+               '~/Library/Preferences/com.mixedinkey.application.plist',
+             ]
 end
