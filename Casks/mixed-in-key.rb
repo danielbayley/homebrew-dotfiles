@@ -1,8 +1,8 @@
 cask 'mixed-in-key' do
-  version '8.1.2.3598'
-  sha256 '36d853f2811d166098648bb2847a2987d25e67a5ab5c4e0aa9c59cdda279b596'
+  version '8.5.0.3877'
+  sha256 'b42e8d6fc2ae7518029fa2ec4a360313f4513e054b73e82fd345a57b7a60208f'
 
-  url 'https://builds.mixedinkey.com/download/39/release/latest?key=' + ENV['MIXED_IN_KEY']
+  url "https://builds.mixedinkey.com/download/39/release/latest?key=#{ENV['MIXED_IN_KEY']}"
   name 'Mixed In Key'
   homepage 'http://mixedinkey.com/'
 
