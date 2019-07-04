@@ -1,9 +1,9 @@
 cask 'starcraft-mass-recall' do
-  version '7.0'
-  sha256 'b75c9cd040365c645ab69812a4dcf9f2861da206b495c4809c2b7db6e4e20545'
+  version '7.1'
+  sha256 '598144fe86e3aa5fb8099ae9c60445a52155fa416eca5e7eba7ec1ecfad32983'
 
   # media.forgecdn.net was verified as official when first introduced to the cask
-  url "https://media.forgecdn.net/files/2654/551/SCMR_v#{version}.zip"
+  url "https://media.forgecdn.net/files/2734/228/SCMR_v#{version}.zip"
   name 'StarCraft: Mass Recall'
   homepage 'https://sc2mapster.com/projects/starcraft-mass-recall'
 
@@ -16,8 +16,10 @@ cask 'starcraft-mass-recall' do
   artifact 'Starcraft Mass Recall', target: "#{appdir}/StarCraft II/Maps/Starcraft Mass Recall"
 
   preflight do
-    # dropbox.com/s/m3bwn32gs2jrtdp was verified as official when first introduced to the cask
-    url = 'https://dropbox.com/s/m3bwn32gs2jrtdp/SCMRcinematics.SC2Mod?dl=1'
+    url = "https://media.forgecdn.net/files/2734/872/SCMR_v#{version}_Mods.zip"
+    `/usr/bin/curl -L --progress-bar #{url} | /usr/bin/tar -xC #{staged_path}`
+
+    url = "https://media.forgecdn.net/files/2730/622/SCMRcinematics_v#{version}.zip"
     `/usr/bin/curl -L --progress-bar #{url} | /usr/bin/tar -xC #{staged_path}`
   end
 
