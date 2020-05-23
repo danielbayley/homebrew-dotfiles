@@ -1,22 +1,23 @@
 cask 'alfred-things' do
-  version '3,2017.05'
-  sha256 '508ffea9bfb2f2ebb3e0c29b570ac9d71c5de8991aaf6bf97660e3fdff15cb98'
+  GITHUB_USER = Tap.find { |tap| tap.name.end_with? '/alfred' }.user
+  extend = CaskLoader.load "#{GITHUB_USER}/alfred/#{token}"
+
+  version extend.version
+  sha256 extend.sha256
 
   url "https://culturedcode.com/frozen/#{version.after_comma.major}/#{version.after_comma.minor}/Add-To-Do-to-Things-#{version.major}.alfredworkflow.zip"
-  name 'Things'
+  appcast extend.appcast.uri
+  name extend.name
   homepage 'https://support.culturedcode.com/customer/en/portal/articles/2803574-creating-to-dos-with-a-launcher'
 
-  depends_on cask: 'alfred'
+  conflicts_with cask: "homebrew/cask/#{token}"
+  depends_on extend.depends_on
 
-  plist = Dir["#{ENV['HOME']}/Library/Preferences/com.*.Alfred-Preferences*.plist"]
-  syncfolder = File.expand_path `/usr/bin/defaults read #{plist.first} syncfolder`
-  workflow = "#{syncfolder.chomp}/Alfred.alfredpreferences/workflows/" + name[0]
+  artifact staged_path, target: extend.artifacts.to_a.first.target
 
-  artifact staged_path, target: workflow
-
-  postflight do
+  preflight do
     subtext = 'Title #tags [Area/Project] :: Notes > +DD/MM/[YY]YY'
-    plist = "#{workflow}/info.plist"
+    plist = "#{staged_path}/info.plist"
     system_command '/usr/libexec/plistbuddy', args: ['-c', 'set :name Things', plist]
     system_command '/usr/libexec/plistbuddy', args: ['-c', "set :objects:1:config:subtext #{subtext}", plist]
   end
