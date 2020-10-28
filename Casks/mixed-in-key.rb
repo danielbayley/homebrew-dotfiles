@@ -1,23 +1,28 @@
-cask 'mixed-in-key' do
-  version '8.5.0.3877'
-  sha256 'b42e8d6fc2ae7518029fa2ec4a360313f4513e054b73e82fd345a57b7a60208f'
-
-  url "https://builds.mixedinkey.com/download/39/release/latest?key=#{ENV['MIXED_IN_KEY']}"
-  name 'Mixed In Key'
-  homepage 'http://mixedinkey.com/'
-
+cask "mixed-in-key" do
+  version "8.5.3.4078"
+  sha256 "5391b67d484ab3b7e377ac137a19c0da7eb8bd2298326810768fdb62f81ba82a"
+  
+  envar = "HOMEBREW_#{token.upcase.tr "-", "_"}_VIP_CODE"
+  url "https://builds.mixedinkey.com/download/39/release/latest?key=#{ENV[envar]}"
+  appcast "https://community.mixedinkey.com/Topics/24385/mixed-in-key-changelogs",
+          must_contain: "#{version.major_minor_patch} (Mac)"
+  name "Mixed In Key"
+  desc "Harmonic mixing for DJs and music producers"
+  homepage "https://mixedinkey.com/"
+  
   auto_updates true
-
+  
   app "Mixed In Key #{version.major}.app"
-
-  uninstall delete: [
-                      '~/Library/Caches/com.mixedinkey.application',
-                      '~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mixedinkey.application.sfl',
-                    ],
-            rmdir:  '~/Library/Application Support/Mixedinkey'
-
+  
+  bundle_id = "com.mixedinkey.application"
+  uninstall quit: bundle_id
+  
   zap trash: [
-               '~/Library/Application Support/Mixedinkey',
-               '~/Library/Preferences/com.mixedinkey.application.plist',
-             ]
+    "~/Library/*/#{bundle_id}",
+    "~/Library/Application Support/Mixedinkey",
+    "~/Library/Preferences/#{bundle_id}.plist",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/#{bundle_id}.sfl*",
+  ]
+  
+  caveats "Cask requires a #{envar} environment variable to be set with your VIP code."
 end
