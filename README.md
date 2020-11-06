@@ -11,11 +11,12 @@ Personal macOS configuration and _[Homebrew] [tap]_.
 Install
 -------
 ~~~ sh
-brew tap danielbayley/dotfiles
-brew install #formula
-brew cask install #cask
+brew tap $GITHUB_USER/dotfiles
+brew --repository $_ | read
+launchctl setenv ZDOTDIR $REPLY
+brew bundle
 ~~~
-`git config core.hooksPath hooks`
+`git config core.hooksPath .github/hooks`
 
 License
 -------
@@ -24,7 +25,7 @@ License
 [MIT]:              LICENSE.md
 [Daniel Bayley]:    https://github.com/danielbayley
 
-[homebrew]:         http://brew.sh
+[homebrew]:         https://brew.sh
 [tap]:              https://docs.brew.sh/Taps
 [formula]:          https://github.com/Homebrew/brew/blob/master/docs/Formula-Cookbook.md#formula-cookbook
 [_cask_]:           https://github.com/Homebrew/homebrew-cask#homebrew-cask
