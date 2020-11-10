@@ -1,0 +1,29 @@
+#! /bin/zsh --no-rcs --err-exit
+
+git config --get remote.origin.url | read
+tap=$REPLY:h:t/$REPLY:t:r
+
+if (($#))
+then ls {Formula,Casks,cmd}/$1:t:r.rb(N)
+elif (($+GITHUB_ACTIONS))
+then ls {Formula,Casks,cmd}/*.rb(N) #,cmd} TODO
+else
+  git diff --staged --name-only --diff-filter ACM | egrep '(Formula|Casks|cmd)/.+\.rb$'
+fi | while read
+do token=$tap/$REPLY:t:r
+
+  case $REPLY in
+    Formula*)
+      brew style $token
+      brew audit --strict --skip-style ${GITHUB_ACTIONS+--online} $token ${@:2}
+      HOMEBREW_NO_AUTO_UPDATE=1 brew install $token
+      brew test $token;;
+
+    Cask*) subcommand=alfred
+      brew cask style $token
+      if ((!$+GITHUB_ACTIONS)) brew cask audit --appcast $token
+      brew cask audit --strict ${GITHUB_ACTIONS+--online} $token ${@:2};;
+
+    cmd/*) brew style $REPLY
+  esac
+done
