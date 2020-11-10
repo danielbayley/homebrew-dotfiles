@@ -1,0 +1,4 @@
+#! /bin/zsh --no-rcs --aliases
+if (($+commands[rg])) alias grep=rg
+
+brew shim list | grep $@
