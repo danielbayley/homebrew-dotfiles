@@ -1,0 +1,3 @@
+#! /bin/zsh --no-rcs
+brew cask uninstall $@
+brew shim bundle dump --describe --force &
