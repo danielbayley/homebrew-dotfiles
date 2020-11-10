@@ -1,12 +1,15 @@
 cask "corsixth" do
-  version "0.64"
+  extend = Formulary.resolve token
+
+  version extend.version.to_s
   sha256 "47c0811b08123e3ba46dfb15ffebab627057645bf393b53be7ff7daeefc85c9f"
 
-  url "https://github.com/CorsixTH/CorsixTH/releases/download/v#{version}/CorsixTH.#{version}-1.dmg"
-  appcast "https://github.com/CorsixTH/CorsixTH/releases.atom"
-  name "CorsixTH"
-  desc "Reimplementation of the 1997 Bullfrog business sim Theme Hospital"
-  homepage "https://github.com/CorsixTH/CorsixTH#readme"
+  releases = "#{extend.homepage}/releases"
+  url "#{releases}/download/v#{version}/CorsixTH.#{version}-1.dmg"
+  appcast "#{releases}.atom"
+  name File.basename extend.homepage
+  desc "Open source clone of Theme Hospital"
+  homepage extend.homepage
 
   depends_on cask: th_token = "gog-theme-hospital"
 
@@ -25,11 +28,12 @@ cask "corsixth" do
       config += "/#{@cask.name.first}"
 
       data = if Dir.exist? config then "#{config}/config.txt"
-             else "#{app}/Contents/Resources/Lua/config_finder.lua"
-             end
-      utils = Formula.ancestors.find { |a| a.name == "Utils::Inreplace" }
-      utils.inreplace data, %r{(theme_hospital_install\s*=\s*)\[\[.*\]\]},
-                      "\\1[[#{th_app}/Contents/Resources/game]]"
+      else "#{app}/Contents/Resources/Lua/config_finder.lua"
+      end
+
+      util = Formula.ancestors.find { |ancestor| ancestor.name == "Utils::Inreplace" }
+      util.inreplace data, /(theme_hospital_install\s*=\s*)\[\[.*\]\]/,
+                     "\\1[[#{th_app}/Contents/Resources/game]]"
 
       break unless Dir.exist? saves = "#{config}/Saves"
 
