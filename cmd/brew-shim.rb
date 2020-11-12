@@ -2,6 +2,8 @@
 
 aliases = {
   ls: "list",
+  i:  "install",
+  rm: "uninstall",
   ri: "reinstall",
   rb: "ruby",
 }
@@ -19,5 +21,5 @@ if command
   ARGV.shift
   command.end_with?(".rb") ? require(command) : exec(command, *ARGV)
 else
-  exec "brew", *Homebrew.args.remaining
+  exec "brew", *[cask, *ARGV].compact
 end

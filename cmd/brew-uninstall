@@ -1,3 +1,4 @@
 #! /bin/zsh --no-rcs
 brew uninstall $@
+brew services stop $@ &> /dev/null &
 brew shim bundle dump --describe --force &

@@ -9,12 +9,13 @@ require "#{HOMEBREW_LIBRARY}/Taps/homebrew/homebrew-bundle/lib/bundle"
 
 dump = Bundle::Dumper.build_brewfile(options.drop(3).to_h).lines
 
-pattern = /\s+(?!id)([a-z_]+:|if|unless)/
+ignore = /cask_args|\$LOAD_PATH|require/
+pattern = /\s+(?!id)([a-z_]+:|if|unless)|#{ignore.source}/
 
 brewfile = options[:file] || Bundle::Dumper.brewfile_path
-committed = File.readlines(brewfile).grep pattern unless brewfile == "-"
+committed = File.readlines(brewfile).reverse.grep pattern unless brewfile == "-"
 
-committed&.each { |line| dump.unshift line if line.include? "cask_args" }
+committed&.each { |line| dump.unshift line if line.match? ignore }
 
 dump.map! do |line|
   case match = committed&.find { |diff| diff.include? line.chomp }
@@ -23,6 +24,12 @@ dump.map! do |line|
   else match
   end
 end
+
+taps = dump.filter { |line| line.start_with? "tap" }
+dump = taps + (dump - taps)
+
+tapped = /alfred/
+dump.map! { |line| line.sub(/^cask\s+"(#{tapped.source})-(.+)"/, '\\1 "\\2"') }
 
 if brewfile == "-"
   puts dump.join unless dump.empty?
