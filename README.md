@@ -13,8 +13,7 @@ Install
 ~~~ sh
 brew tap $GITHUB_USER/dotfiles
 brew --repository $_ | read
-launchctl setenv ZDOTDIR $REPLY
-brew bundle
+brew bundle --file $REPLY/Brewfile
 ~~~
 `git config core.hooksPath .github/hooks`
 
