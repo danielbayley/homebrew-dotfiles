@@ -1,30 +1,36 @@
-#! /bin/zsh --no-rcs --err-exit
+#! /bin/zsh --no-rcs --err-exit --null-glob
 source /etc/profile
 
 git config --get remote.origin.url | read
-tap=$REPLY:h:t/$REPLY:t:r
+: ${GITHUB_REPOSITORY:=$REPLY:h:t/$REPLY:t:r}
 
-if (($#))
-then ls {Formula,Casks,cmd}/$1:t:r.rb(N)
-elif (($+GITHUB_ACTIONS))
-then ls {Formula,Casks,cmd}/*.rb(N)
-else
-  git diff --staged --name-only --diff-filter ACM | egrep '(Formula|Casks|cmd)/.+\.rb$'
-fi | while read
-do token=$tap/$REPLY:t:r
+HOMEBREW_NO_AUTO_UPDATE=true
 
-  case $REPLY in
-    Formula*)
-      brew style $token
-      brew audit --strict --skip-style ${GITHUB_ACTIONS+--online} $token ${@:2}
-      HOMEBREW_NO_AUTO_UPDATE=1 brew install $token
-      brew test $token;;
+if (($+GITHUB_ACTIONS)) then
+  brew test-bot --only-cleanup-before
+  brew test-bot --only-setup
+  brew test-bot --only-tap-syntax
+  if ([[ $GITHUB_EVENT_NAME = pull_request ]]) brew test-bot --only-formulae
+  set \*
+fi
 
-    Cask*)
+if (($#)) then print -l **/$~^@:t:r.rb
+else git diff --staged --name-only --diff-filter ACM | grep '\.rb$'
+fi | while read rb
+do
+  token=$GITHUB_REPOSITORY/$rb:t:r
+  head -n 1 $rb | read first_line
+
+  case $first_line in
+    class*Formula)
+      if ([[ $GITHUB_EVENT_NAME != pull_request ]]) &&
+      brew test-bot --skip-setup --fail-fast --only-formulae $token --skip-recursive-dependents;;
+
+    cask*do)
       brew cask style $token
       if ((!$+GITHUB_ACTIONS)) brew cask audit --appcast $token
       brew cask audit --strict ${GITHUB_ACTIONS+--online} $token ${@:2};;
 
-    cmd/*) brew style $REPLY
+    *) brew style $rb
   esac
 done

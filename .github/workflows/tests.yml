@@ -12,8 +12,6 @@ jobs:
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
-        with:
-          test-bot: false
 
       - name: Cache Homebrew Bundler RubyGems
         id: cache
@@ -30,4 +28,12 @@ jobs:
       - run: brew tap danielbayley/alfred
       - env:
           HOMEBREW_ALFRED_WORKFLOW_PREFIX: ${{ env.HOME }}/Library/Application Support/Alfred
+
         run: .github/hooks/pre-commit
+
+      - name: Upload bottles as artifact
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@main
+        with:
+          name: bottles
+          path: '*.bottle.*'
