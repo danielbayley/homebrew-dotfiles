@@ -27,9 +27,9 @@ do
       brew test-bot --skip-setup --fail-fast --only-formulae $token --skip-recursive-dependents;;
 
     cask*do)
-      brew cask style $token
-      if ((!$+GITHUB_ACTIONS)) brew cask audit --appcast $token
-      brew cask audit --strict ${GITHUB_ACTIONS+--online} $token ${@:2};;
+      brew style $token
+      if ((!$+GITHUB_ACTIONS)) brew audit --cask --appcast $token
+      brew audit --cask --strict ${GITHUB_ACTIONS+--online} $token ${@:2};;
 
     *) brew style $rb
   esac

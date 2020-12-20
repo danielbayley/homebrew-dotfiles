@@ -2,8 +2,8 @@ cask "icon-tester" do
   version "1.0"
   sha256 "1c7fe01951d79df18d85b2b0217c285d0161f6a91a18c91b375bf62d632a58d8"
 
-  # dropbox.com/s/ was verified as official when first introduced to the cask
-  url "https://dropbox.com/s/8rvk6305526ounk/icontester.zip?dl=1"
+  share = "dropbox.com/s/8rvk6305526ounk/"
+  url "https://#{share}icontester.zip?dl=1", verified: share
   appcast "https://macdownload.informer.com/#{token}/versions"
   name "Icon Tester"
   desc "Test out icon image files in the dock"

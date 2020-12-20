@@ -27,8 +27,8 @@ cask "starcraft-mass-recall" do
     ]
   end
 
-  # media.forgecdn.net/ was verified as official when first introduced to the cask
-  url "https://media.forgecdn.net/files/2931/253/SCMR_v#{version}.zip"
+  domain = "media.forgecdn.net/"
+  url "https://#{domain}files/2931/253/SCMR_v#{version}.zip", verified: domain
   appcast "https://raw.githubusercontent.com/abrahamYG/sc2-campaign-sources/master/sources/#{token}.json",
           must_contain: "v#{version.major_minor}"
   name "StarCraft Mass Recall"
@@ -55,9 +55,9 @@ cask "starcraft-mass-recall" do
 
     Dir.chdir(staged_path) do
       Hash[*resources].each do |url, checksum|
-        zip = File.basename CGI.unescape URI.parse(url.to_s).path
+        zip = File.basename CGI.unescape URI.parse(url).path
 
-        curl_download url.to_s, to: zip unless File.exist? zip
+        curl_download url, to: zip unless File.exist? zip
 
         actual = Digest::MD5.file zip
         raise CaskSha256MismatchError.new token, checksum, actual, zip if actual != checksum
