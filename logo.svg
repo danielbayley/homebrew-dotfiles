@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 256">
+  <style type="text/css">
+    .dot  { fill: #B1BAC4 }
+    .line {
+      fill: none;
+      stroke: #8B949E;
+      stroke-width: 48;
+      stroke-linecap: square
+    }
+    .i { stroke-linecap: butt }
+  </style>
+  <circle class="dot" cx="64" cy="192" r="24"/>
+  <circle class="dot" cx="192" cy="128" r="24"/>
+  <circle class="dot" cx="384" cy="128" r="24"/>
+  <line   class="line i" x1="192" y1="216" x2="192" y2="168"/>
+  <line   class="line"   x1="256" y1="64"  x2="256" y2="192"/>
+  <path   class="line" d="M448,192h32c17.7,0,32-14.3,32-32s-14.3-32-32-32s-32-14.3-32-32s14.3-32,32-32h32"/>
+  <path   class="line" d="M128,192v-64c0-35.2,28.8-64,64-64"/>
+  <path   class="line" d="M384,192c-35.3,0-64-28.7-64-64s28.7-64,64-64"/>
+</svg>

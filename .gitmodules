@@ -1,0 +1,18 @@
+[submodule "lib"]
+  path = lib
+  url = https://github.com/danielbayley/homebrew-utils
+  branch = main
+[submodule "zdotdir"]
+  path = zdotdir
+  url = https://github.com/danielbayley/zdotdir
+  branch = main
+[submodule "git"]
+  path = git
+  url = https://github.com/danielbayley/gh-git
+  branch = main
+[submodule "npm"]
+  path = npm
+  url = https://github.com/danielbayley/npm-config
+[submodule "vscode"]
+  path = vscode
+  url = https://github.com/danielbayley/vscode-config

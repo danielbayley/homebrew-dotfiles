@@ -18,11 +18,15 @@ tap "homebrew/services"
 tap "homebrew/test-bot"
 tap "ilyes512/boilr"
 tap "kylef/formulae"
+tap "mnml-theme/install"
 tap "nrlquaker/createzap"
+tap "ojford/formulae"
 tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git"
+tap "sticklerm3/pourhouse"
 tap "veertuinc/anka"
-# File system integration
-cask "osxfuse"
+tap "zunit-zsh/zunit"
+# Various scripts for setting up and testing Anka software on your local machine
+brew "anka-getting-started-scripts"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
 # Download with resuming and segmented downloading
@@ -45,16 +49,22 @@ brew "fileicon"
 brew "fswatch"
 # GitHub command-line tool
 brew "gh"
+# Highest-quality GIF encoder based on pngquant
+brew "gifski"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
 # Git extension for versioning large files
 brew "git-lfs"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
+# Peer-to-peer hypermedia protocol
+brew "ipfs"
 # Library to render SVG files using Cairo
 brew "librsvg"
 # C library for reading, creating, and modifying zip archives
 brew "libzip"
+# Tool for managing login items
+brew "loginitems"
 # Mac App Store command-line interface
 brew "mas"
 # Media server software, compliant with DLNA/UPnP-AV clients
@@ -63,6 +73,8 @@ brew "minidlna", restart_service: :changed
 brew "node"
 # Read-write NTFS driver for FUSE
 brew "ntfs-3g"
+# Tool for managing login items
+brew "ojford/formulae/loginitems"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
 # Fuzzy Finder in rust!
@@ -85,6 +97,8 @@ brew "watchman"
 brew "youtube-dl"
 # Next-generation plugin manager for zsh
 brew "zplug"
+# Powerful testing framework for ZSH projects
+brew "zunit-zsh/zunit/zunit"
 # Personal Zsh configuration
 brew "danielbayley/dotfiles/zdotdir", restart_service: :changed
 # Bash scripts that integrate bat with various command-line tools
@@ -109,6 +123,10 @@ cask "ae-preset-conigs-mixtape"
 cask "airserver"
 # Spreadsheet-database hybrid cloud collaboration
 cask "airtable"
+# Refreshes aliases and identifies broken aliases
+cask "alifix"
+# Command tool to create Finder aliases, and to resolve them to full paths
+cask "alisma"
 # Application launcher and productivity software
 cask "alfred"
 # Use Numi with Alfred for quick calculations
@@ -118,7 +136,7 @@ cask "alfred-theme-dracula"
 # Android SDK component
 cask "android-platform-tools"
 # CLI tool for managing and creating macOS virtual machines
-cask "anka-virtualization-beta"
+cask "anka-virtualization"
 # Cross-platform text editor
 cask "atom-beta"
 # Instantly crop compositions to fit their contents in After Effects
@@ -141,18 +159,22 @@ cask "brooklyn"
 cask "buttcapper"
 # Tool to list all active shortcuts of the current application
 cask "cheatsheet"
+# Command tool to compare all the extended attributes between two files
+cask "cmpxat"
 # Open source clone of Theme Hospital
 cask "corsixth"
 # Disk space visualizer
 cask "daisydisk"
 # Sound and music editor
 cask "danielbayley-ableton-live-suite", args: { "no-quarantine": true }
-# Binary releases of VS Code without MS branding/telemetry/licensing
+# Binary releases of VS Code without MS branding/telemetry/licensing, with modifications
 cask "danielbayley-vscode", args: { "no-quarantine": true }
 # API documentation browser and code snippet manager
 cask "dash"
 # Database browser for SQLite (DB4S) project
 cask "db-browser-for-sqlite"
+# Data recovery software
+cask "disk-drill"
 # Screenshot and screen recorder
 cask "droplr"
 # File sharing solution
@@ -193,6 +215,8 @@ cask "hyper"
 cask "icon-tester"
 # iPhone management application
 cask "imazing"
+# Menu bar application for the IPFS peer-to-peer network
+cask "ipfs"
 # Spots differences in text and image files
 cask "kaleidoscope"
 # Build customizable toolbars for After Effects
@@ -213,6 +237,7 @@ cask "mactracker"
 cask "mailspring"
 # Harmonic mixing for DJs and music producers
 cask "mixed-in-key"
+# Instantly and precisely move anchor points anywhere without moving the layer
 cask "move-anchor-point"
 # Cross-platform music tagger
 cask "musicbrainz-picard"
@@ -228,6 +253,8 @@ cask "nteract"
 cask "numi"
 # Screensaver with octicons
 cask "octoscreen"
+# File system integration
+cask "osxfuse"
 # Vector animation workflow for Illustrator and After Effects
 cask "overlord"
 # Extract files and folders from package files, disk images, and archives
@@ -236,7 +263,7 @@ cask "pacifist"
 cask "pastebot"
 # Utility to display the Dock in the Touch Bar
 cask "pock"
-# Watch movies and TV shows instantly
+# BitTorrent client that includes an integrated media player
 cask "popcorn-time"
 # QuickLook plug-in that renders source code with syntax highlighting
 cask "qlcolorcode"
@@ -248,6 +275,8 @@ cask "raindropio"
 cask "rectangle"
 # File sync and share software
 cask "resilio-sync"
+# Opens up the full power of the macOS versioning system
+cask "revisionist"
 # Font manager that helps preview, install, sync and manage fonts
 cask "rightfont"
 # The fastest and simplest way to rig and animate characters in After Effects
@@ -281,6 +310,8 @@ cask "subler"
 cask "sublercli"
 # Git client
 cask "sublime-merge"
+# Text editor for code, markup and prose
+cask "sublime-text"
 # Control windows and applications right from your trackpad
 cask "swish"
 # Service that allows users to make symbolic links in the Finder
@@ -316,6 +347,8 @@ cask "veertu-desktop"
 cask "vmware-fusion"
 # Torrent streaming application
 cask "webtorrent"
+# Extended attribute editor FIXME # Full-featured extended attribute editor, can also add quarantine xattrs
+cask "xattred"
 # Tools for measuring, inspecting & testing on-screen graphics and layouts
 cask "xscope"
 # Share, organize and collaborate on designs
@@ -324,27 +357,42 @@ cask "zeplin"
 cask "zoomus"
 # CEP extension installer for Adobe After Effects and Premiere Pro
 cask "zxp-installer"
+mas "Abyss", id: 1507396839
 mas "AdGuard for Safari", id: 1440147259
 mas "Apple Configurator 2", id: 1037126344
 mas "Buffer", id: 1474298973
 mas "Calcbot", id: 931657367
+mas "Coin Stats", id: 1498417304
+mas "Color Picker", id: 1545870783
+mas "ColorSlurp", id: 1287239339
+mas "Crypto Pro", id: 980888073
+mas "Dato", id: 1470584107
 mas "Developer", id: 640199958
 mas "Drafts", id: 1435957248
-mas "Evernote", id: 406056744
 mas "Evernote Web Clipper", id: 1481669779
+mas "Evernote", id: 406056744
 mas "Grammarly for Safari", id: 1462114288
 mas "Hidden Bar", id: 1452453066
 mas "Honey", id: 1472777122
+mas "Kelir", id: 1145215534
 mas "Keynote", id: 409183694
+mas "LottieFiles", id: 1531085233
 mas "Mactracker", id: 430255202
 mas "Money", id: 1185488696
 mas "Numbers", id: 409203825
 mas "Octotree", id: 1457450145
 mas "Pages", id: 409201541
+mas "Pixeur", id: 1507890049
 mas "Plash", id: 1494023538
 mas "Pocket", id: 568494494
 mas "Raindrop.io for Safari", id: 957810159
 mas "ReadKit", id: 588726889
+mas "Save to Pocket", id: 1477385213
+mas "Shareful", id: 1522267256
+mas "Shortcut Remote", id: 1511009307
 mas "SnippetsLab", id: 1006087419
 mas "Spark", id: 1176895641
 mas "Things", id: 904280696
+mas "TicketToRide", id: 470834073
+mas "Tokenary", id: 1375542355
+mas "znote", id: 1512925495

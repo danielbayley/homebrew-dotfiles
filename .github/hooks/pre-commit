@@ -14,7 +14,7 @@ if (($+GITHUB_ACTIONS)) then
   set \*
 fi
 
-if (($#)) then print -l **/$~^@:t:r.rb
+if (($#)) then print -l **/$~^@:t:r.rb(D)
 else git diff --staged --name-only --diff-filter ACM | grep '\.rb$'
 fi | while read rb
 do

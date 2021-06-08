@@ -1,25 +1,28 @@
 # frozen_string_literal: true
 
 aliases = {
-  ls: "list",
-  i:  "install",
-  rm: "uninstall",
-  ri: "reinstall",
-  rb: "ruby",
+  help: "--help",
+  ls:   "list",
+  i:    "install",
+  rm:   "uninstall",
+  ri:   "reinstall",
+  rb:   "ruby",
 }
 
-ARGV.map!(&->(arg) { aliases[arg.to_sym] or arg })
+ARGV.map!(&->(arg) { aliases[arg.to_sym] || arg })
 
-if ARGV.include? "cask"
-  ARGV.shift
-  cask = "cask"
-end
+commands = Commands.internal_commands + Commands.internal_developer_commands
 
-command, = Dir["#{__dir__}/brew#{cask}-#{ARGV.first}{.*,}"]
+command, = Dir["#{__dir__}/{,brew-}#{ARGV.first}{.*,}"]
 
-if command
-  ARGV.shift
-  command.end_with?(".rb") ? require(command) : exec(command, *ARGV)
+if command && commands.include?(ARGV.first)
+
+  if command.end_with? ".rb"
+    require command
+    Homebrew.send ARGV.shift
+  else
+    exec command, *ARGV.drop(1)
+  end
 else
-  exec "brew", *[cask, *ARGV].compact
+  exec HOMEBREW_BREW_FILE, *ARGV
 end
