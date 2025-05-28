@@ -1,3 +1,0 @@
-#! /bin/zsh --no-rcs
-brew cask zap $@
-brew shim bundle dump --describe --force &
