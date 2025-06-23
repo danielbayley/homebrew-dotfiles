@@ -3,7 +3,7 @@ cask "pnpm" do
   os macos: "macos", linux: "linux"
 
   formula = Formula[token]
-  version formula.version.to_s
+  version "10.12.1"
   sha256 arm:          "8b39b2129a19eeec9511eb7cdde2450b604e389551d59ad738167f7495b56d52",
          intel:        "4c78e34022bfecfae60c041148a8022858b80b50e3b31c8fa8ba7b2b6259dd4a",
          arm64_linux:  "c2f9e9d42d81f9f40a0f895513d014a08d5ecb0abc9e15c426ecfde6f492706b",
