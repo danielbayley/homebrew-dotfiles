@@ -13,6 +13,8 @@
 [submodule "npm"]
   path = npm
   url = https://github.com/danielbayley/npm-config
+  branch = main
 [submodule "vscode"]
   path = vscode
   url = https://github.com/danielbayley/vscode-config
+  branch = main
