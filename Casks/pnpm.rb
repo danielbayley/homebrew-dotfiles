@@ -20,8 +20,6 @@ cask "pnpm" do
     formula "#{formula.tap.name}/pnpm"
   end
 
-  conflicts_with formula: token
-
   pnpm_home = ENV.fetch "HOMEBREW_PNPM_HOME", "#{Dir.home}/Library/pnpm"
   pnpm = File.basename url.uri.path
 

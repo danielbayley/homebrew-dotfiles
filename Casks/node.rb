@@ -22,7 +22,6 @@ cask "node" do
     formula "#{formula.tap.name}/node"
   end
 
-  conflicts_with formula: token
   depends_on cask: "danielbayley/dotfiles/pnpm"
 
   pnpm       = Formula["pnpm"]
