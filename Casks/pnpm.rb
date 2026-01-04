@@ -25,19 +25,9 @@ cask "pnpm" do
 
   binary pnpm, target: token
   binary "pnpx"
-  bash_completion "pnpm.bash"
-  fish_completion "pnpm.fish"
-  zsh_completion  "pnpm.zsh"
 
-  # https://pnpm.io/completion
   preflight do
     staged_path.cd do
-      script = %w[bash fish zsh].map do |shell|
-        "./#{pnpm} completion #{shell} > pnpm.#{shell}\n"
-      end
-      set_permissions pnpm, "u+x"
-      system script.join
-
       # https://pnpm.io/cli/dlx
       File.write "pnpx", <<~EOS
         #!/bin/sh
