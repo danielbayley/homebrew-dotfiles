@@ -9,8 +9,8 @@ cask "pnpm" do
          arm64_linux:  "ae70208882b2c5229e143de2454fc4f778b2d2ae959a2e48ec76a6c26e8b3127",
          x86_64_linux: "2fc98db127c611be0c110af11b5b72759f7d736893dddc81df73b7b59b30f15a"
 
-  repo = "github.com/pnpm/pnpm"
-  url "https://#{repo}/releases/download/v#{version}/pnpm-#{os}-#{arch}",
+  repo = "github.com/#{token}/#{token}"
+  url "https://#{repo}/releases/download/v#{version}/#{token}-#{os}-#{arch}",
       verified: repo
   name token
   desc "#{formula.desc}, packaged with Node.js into an executable"
