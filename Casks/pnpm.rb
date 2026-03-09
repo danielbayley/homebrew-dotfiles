@@ -3,11 +3,11 @@ cask "pnpm" do
   os macos: "macos", linux: "linux"
 
   formula = Formula[token]
-  version "10.29.3"
-  sha256 arm:          "a248c56b0ab20443e18d0c8ee3207c6c564ee342bd3fc8694b3569a060cecece",
-         intel:        "569877025e8894d88b1756fdbc0675330dfcd9c01ece4ab26685baafffa8e303",
-         arm64_linux:  "ae70208882b2c5229e143de2454fc4f778b2d2ae959a2e48ec76a6c26e8b3127",
-         x86_64_linux: "2fc98db127c611be0c110af11b5b72759f7d736893dddc81df73b7b59b30f15a"
+  version "10.30.3"
+  sha256 arm:          "ccfb6e54fe29d13715e2fe418ef0374cde5a7f68b95f5ed5da5f564886af9d17",
+         intel:        "d9be0fd3989c09f5abf7e52f10d8d0294f757af61bbbd59727d607c85205a788",
+         arm64_linux:  "9488f48d6967bfa8f5ebc5c077aae297d2fe25287697b4c8edf991ff945d8af7",
+         x86_64_linux: "5dc971e801610471b5cd6729ba289531be6695bd50d5e833fe22b18896b13a06"
 
   repo = "github.com/#{token}/#{token}"
   url "https://#{repo}/releases/download/v#{version}/#{token}-#{os}-#{arch}",
