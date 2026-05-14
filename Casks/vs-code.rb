@@ -11,6 +11,7 @@ cask "vs-code" do
 
   auto_updates extend.auto_updates
   conflicts_with cask: extend.token
+  depends_on :macos
 
   app app = extend.artifacts.first.source.basename
   binary extend.artifacts.to_a[1].source, target: "code"
@@ -27,5 +28,5 @@ cask "vs-code" do
 
   uninstall quit: name.first
 
-  zap trash: extend.artifacts.to_a.third.directives.values.flatten
+  zap(**extend.artifacts.to_a.third.directives.compact_blank)
 end
